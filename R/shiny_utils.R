@@ -80,7 +80,7 @@ get_norm_exp <- function(sample_table, sample_num, standard_samples, minReadCnt,
   #sample Deseq normalization
   count_col <- as.data.frame(colnames(count_filt))
 
-  dds <- DESeq2::DESeqDataSetFromMatrix(colData = count_col, countData = count_filt, design= ~ 1)
+  dds <- DESeq2::DESeqDataSetFromMatrix(colData = count_col, countData = count_filt, design= ~ 1, stringsAsFactors=FALSE)
   dds_vst <- DESeq2::varianceStabilizingTransformation(dds, blind=T, fitType='local')
   count_norm <- as.data.frame(SummarizedExperiment::assay(dds_vst))
 
